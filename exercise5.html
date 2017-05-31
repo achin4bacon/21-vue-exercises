@@ -8,36 +8,52 @@
     <title>Exercise 5</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue">
-        import datetime from 'vue-datetimepicker';
-
-        export default {
-            components: { datetime }
-        };
     </script>
 </head>
 
 <body>
     <h1>Exercise 5</h1>
-    <template>
-    <datetime :readonly="true" format="YYYY-MM-DD">Insert</datetime>
-    <datetime format="YYYY-M-D" value="2015-9-5"></datetime>
-    <datetime :readonly="true" format="MMM/D/YYYY" width="300px"></datetime>
-</template>
-    <!--Write an application that allows the user to record when they drank cups of coffee (hint: try the type="datetime" input field)
-The half-life of caffeine is about 10 hours. Assuming that one cup of coffee has 95mg of caffeine,
-display in real time the amount of caffeine still present in the user's system.
-
-Bonus points: Allow the user to select different types of caffeinated drinks.
-
-Extra bonus points: display a graph showing the caffeine in the user's system since their first cup.
-
-Super extra bonus points: allow the user to track different types of medicines (or other chemicals) in their system as well.-->
-    <div id=#app>
+    
+How much coffee is still in your system, fool? <br> 
+Select the time at which you last drank coffee. <br>
+<img src="https://media.giphy.com/media/zJ8ldRaGLnHTa/giphy.gif" id="coffee">
+    <div id='app'>
+        <input type="datetime-local" v-model="coffeeTime">
+        <p>{{realTimeCoffeeTime}}</p>
+        <p> You stil have {{caffeineInBody*100}}% caffeine left in your body.
     </div>
     <script>
-        var halflifehr = 10;
-        var onecuphr = 95;
-        var halflifemg = onecup / 2;
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                coffeeTime : '2017-05-30T21:11',
+                now : new Date()
+            },
+            computed: {
+                realCoffeeTime: function(){
+                    return new Date(this.coffeeTime)
+                },
+                realTimeCoffeeTime : function(){
+                    return this.now - this.realCoffeeTime;
+                }, 
+                caffeineInBody : function(){
+                    return Math.pow(.5,((this.realTimeCoffeeTime / 1000 / 60 / 60) /10));
+                }
+            },
+            methods : {
+
+            },
+            created : function(){
+                var thatVm = this;
+                setInterval(function(){
+                    thatVm.now = new Date()
+                }, 777);
+            }
+        });
+
+        //for each 10 hours, decrease by halflifemg -- display mg remaining
+        //need to see HTML formatting before proceeding further.
     </script>
 </body>
 

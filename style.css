@@ -1,5 +1,25 @@
 body{
     text-align: center;
     font-family: monospace;
-    color: violet
+    color: violet;
+    background-image: url('http://www.psdgraphics.com/file/light-blue-abstract.jpg')
+}
+#harry{
+    border-radius: 50%;
+}
+#walt{
+    border-radius: 25%;
+}
+#somedude{
+    border-radius: 50%;
+}
+#elaine{
+    border-radius: 50%
+}
+#coffee{
+    border-radius: 50%
+}
+
+#magic{
+    color: rgb(0, 255, 255)
 }

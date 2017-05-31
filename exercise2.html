@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<h1>Exercise 3</h1>
+	<h1>Exercise 2</h1>
 	<!--
 
 		Exercise 3: "Live Calculator"
@@ -16,22 +16,22 @@
 		The output fields should update automatically when "a" or "b" are changed.
 
 	-->
-	Now, let's try a live calculator!<br>
+	Now, let's try a <span id=magic>*MaGiCaL*</span> live calculator!<br>
 	Enter two values in the input boxes and watch the answers appear before your very eyes!
 	<br><br>
 	<!--This calculator is almost as magical as Harry-->
-	<img src='./harry.gif'>
+	<img src='./harry.gif' id='harry'>
 <div id="app">
 	<!--add inputs for two numbers-->
 		<input v-model="a" placeholder="a" ><br>
 		<input v-model="b" placeholder="b"><br>
 		<div>
 			<!--display the two numbers added and the result-->
-			<p> {{a}} + {{b}} = {{ addFtn() }}</p>
+			<p v-if="a.length > 0 && b.length > 0"> {{a}} + {{b}} = {{ addFtn() }}</p>
 		</div>
 		<div>
 			<!--display the two numbers multiplied and the result-->
-			<p>{{a}} * {{b}} = {{ multiplyFtn() }}</p>
+			<p v-if="a.length > 0 && b.length > 0">{{a}} * {{b}} = {{ multiplyFtn() }}</p>
 		</div>
 	</div>
 
@@ -56,6 +56,8 @@
 				}
 			}
 		});
+
+		
 	</script>
 </body>
 </html>
