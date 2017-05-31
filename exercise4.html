@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 4</title>
+ 	<link rel="stylesheet" href="style.css">
+    	<script src="https://unpkg.com/vue"></script>
+        <style>
+            body{
+                width: 60%;
+            }
+            </style>
+</head>
+
+<body>
+    <h1>Exercise 4</h1>
+    Turn this paragraph to <font color='red'>RED!</font>
+
+    <div id='app'>
+        <!--bind for style changes to change font color-->
+        <div v-bind:style="styleObject">
+            <!--recognize mouseover and run function mouseOver (creative)!-->
+            <p class='changeMe' v-on:mouseover='mouseOver'>
+                <!--input paragraph-->
+                {{paragraph}}
+            </p>
+        </div>
+    </div>
+    <script>
+        //initialize vue instance
+        var mainAppVm = new Vue({
+            el: '#app',
+            data: {
+                paragraph: "Oh, I'm exhausted. I've been on this street a thousand times! It's never looked so strange! The faces... so cold! In the distance, a child is crying. Fatherless... a bastard child, perhaps. My back aches... my heart aches... but my feet...my feet are resilient! Thank God I took off my heels, and put on my... HIMALAYAN WALKING SHOES!",
+                //begin with black font
+                styleObject: {
+                    color: 'black'
+                }
+            },
+            computed: {
+
+            },
+            methods: {
+                //make sure mouse is being recognized, change font color to red
+                mouseOver: function () {
+                    console.log('ya moused!');
+                    this.styleObject = {
+                        color: 'red'
+                    };
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Exercise 1</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Exercise 1</h1>
+	<!--
+
+		Exercise 1: "Hello!"
+		Write an application which has an input field for the user's name, and displays "Hello, (user's name)" in giant letters below the input field.
+
+	-->
+	<div id="app">
+		<!--Prompt user for name and display-->
+		<input v-model="greeting" placeholder="Enter your name.">
+		<!--Click to run the postGreeting method-->
+		<button v-on:click="postGreeting">Click!</button>
+		<!--Loop through greetings array and display greeting in large font-->
+		<div v-for="greeting of greetings">
+			<h1> Hello, {{greeting}}!!!</h1>
+		</div>
+	</div>
+<!--get Vue-->
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		// Create new Vue instance
+		new Vue({
+			//target app
+			el: '#app',
+			data: {
+				//blank string to begin for each greeting, empty array to push greetings in on click
+				greeting: "",
+				greetings: []
+			},
+			methods: {
+				//push new greeting into array and clear input box after. 
+				postGreeting: function() {
+					this.greetings.push(this.greeting);
+					this.greeting = "";
+				}
+			}
+		});
+	</script>
+</body>
+</html>

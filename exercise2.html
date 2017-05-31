@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Exercise 3</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Exercise 3</h1>
+	<!--
+
+		Exercise 3: "Live Calculator"
+		Write an application which has two input fields "a" and "b" and two output divs, "+" and "*"
+		Display the sum of "a" and "b" in the "+" output field
+		Display the product of "a" and "b" in the "*" output field
+		The output fields should update automatically when "a" or "b" are changed.
+
+	-->
+	Now, let's try a live calculator!<br>
+	Enter two values in the input boxes and watch the answers appear before your very eyes!
+	<br><br>
+	<!--This calculator is almost as magical as Harry-->
+	<img src='./harry.gif'>
+<div id="app">
+	<!--add inputs for two numbers-->
+		<input v-model="a" placeholder="a" ><br>
+		<input v-model="b" placeholder="b"><br>
+		<div>
+			<!--display the two numbers added and the result-->
+			<p> {{a}} + {{b}} = {{ addFtn() }}</p>
+		</div>
+		<div>
+			<!--display the two numbers multiplied and the result-->
+			<p>{{a}} * {{b}} = {{ multiplyFtn() }}</p>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/vue"></script>
+	<script>
+		// new vue instance
+		new Vue({
+			el: '#app',
+			data: {
+				// start with empty strings
+				a: "",
+				b: "",
+				
+			},
+			methods: {
+				addFtn: function() {
+					//parse the strings so they are numbers, return results
+					return (parseInt(this.a) + parseInt(this.b));
+				},
+				multiplyFtn: function() {
+					return(parseInt(this.a) * parseInt(this.b));
+				}
+			}
+		});
+	</script>
+</body>
+</html>

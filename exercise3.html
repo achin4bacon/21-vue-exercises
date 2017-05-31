@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 4</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        body {
+            width: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Exercise 3: "Color Mixer"
+Write an application which takes in two colors (hint: think deeply about which format you'd like to use)
+Display a block of each color (hint: background-color on a div)
+Display a block that is the "average" of the two colors (red = red1 + red2 / 2, etc.)-->
+   
+    <h1>Exercise 3</h1>
+    Pick some colors and watch the box change!
+
+    <div id='app'>
+        <!--Begin with selecting a color for box one-->
+        <div v-bind:style="styleObject">
+            <div id="color1">
+                <input v-model.number="red1">
+                <input v-model.number="green1">
+                <input v-model.number="blue1">
+                <button id='submit' v-on:click='colorPick'>Submit</button>
+            </div>
+        </div>
+        <br><br>
+        <!--Select a color for box two-->
+        <div v-bind:style="styleObject2">
+            <div id="color2">
+                <input v-model.number="red2">
+                <input v-model.number="green2">
+                <input v-model.number="blue2">
+                <button id='submit2' v-on:click='colorPick'>Submit</button>
+            </div>
+        </div>
+        <br><br>
+        <!--Combine the two colors and display in div-->
+        <div v-bind:style="styleObject3">
+            <div id="color3">
+                <button id='submit3' v-on:click='combineColors'>Combine!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // New vue instance
+        var color = new Vue({
+            el: '#app',
+            //take in the input fields as data
+            data: {
+                red1: '',
+                green1: '',
+                blue1: '',
+                red2: '',
+                green2: '',
+                blue2: '',
+                //style the different boxes
+                styleObject: {
+                    'background-color': ''
+                },
+                styleObject2: {
+                    'background-color': ''
+                },
+                styleObject3: {
+                    'background-color': ''
+                }
+            },
+            methods: {
+                //takes in user input of RGB and changes background colors
+                colorPick: function () {
+                    var red = parseInt(this.red1);
+                    var green = parseInt(this.green1);
+                    var blue = parseInt(this.blue1);
+                    var redd = parseInt(this.red2);
+                    var greenn = parseInt(this.green2);
+                    var bluee = parseInt(this.blue2);
+                    this.styleObject = {
+                        'background-color': `rgb(${red}, ${green}, ${blue})`
+                    };
+                    this.styleObject2 = {
+                        'background-color': `rgb(${redd}, ${greenn}, ${bluee})`
+                    }
+                }, //end colorpick
+                //click listener on button to combine previous colors and display color in div
+                combineColors: function(){
+                    var red = parseInt(this.red1);
+                    var green = parseInt(this.green1);
+                    var blue = parseInt(this.blue1);
+                    var redd = parseInt(this.red2);
+                    var greenn = parseInt(this.green2);
+                    var bluee = parseInt(this.blue2);
+                    var red3 = (red + redd) / 2;
+                    var blue3 = (blue + bluee) / 2;
+                    var green3 = (green + greenn) / 2;
+                    this.styleObject3 = {
+                        'background-color' : `rgb(${(red + redd)/2}, ${(green + greenn)/2}, ${(blue + bluee)/2})`
+                    }
+                },
+            }
+        });
+
+        
+    </script>
+</body>
+
+</html>
