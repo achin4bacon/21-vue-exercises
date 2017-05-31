@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Exercise 4</title>
+    <title>Exercise 3</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue"></script>
     <style>
@@ -90,6 +90,7 @@ Display a block that is the "average" of the two colors (red = red1 + red2 / 2, 
                     };
                     this.styleObject2 = {
                         'background-color': `rgb(${redd}, ${greenn}, ${bluee})`
+                        //why can't I return redd/greenn/bluee  and use it in the next equation? How would I do this?
                     }
                 }, //end colorpick
                 //click listener on button to combine previous colors and display color in div
@@ -100,11 +101,12 @@ Display a block that is the "average" of the two colors (red = red1 + red2 / 2, 
                     var redd = parseInt(this.red2);
                     var greenn = parseInt(this.green2);
                     var bluee = parseInt(this.blue2);
-                    var red3 = (red + redd) / 2;
-                    var blue3 = (blue + bluee) / 2;
-                    var green3 = (green + greenn) / 2;
+                    var red3 = Math.floor(parseInt(red + redd) / 2);
+                    var blue3 = Math.floor(parseInt(blue + bluee) / 2);
+                    var green3 = Math.floor(parseInt(green + greenn) / 2);
                     this.styleObject3 = {
-                        'background-color' : `rgb(${(red + redd)/2}, ${(green + greenn)/2}, ${(blue + bluee)/2})`
+                        'background-color' : 
+                        `rgb(${red3}, ${green3}, ${blue3})`
                     }
                 },
             }
